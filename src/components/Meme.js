@@ -1,11 +1,27 @@
 import memesData from '../memesData.js';
+import React from 'react';
 
 const Meme = () => {
 
+  const [meme, setMeme] = React.useState({
+    topText: '',
+    bottomText: '',
+    randomImage: 'http://i.imgflip.com/1bij.jpg'
+  });
+
+  const [allMemeImages, setAllMemeImages] = React.useState(memesData);
+
   function getImage() {
-    const memesArray = memesData.data.memes;
+    const memesArray = allMemeImages.data.memes;
     const num = Math.floor(Math.random() * memesArray.length);
-    console.log(memesArray[num].url);
+    const newImage = memesArray[num].url;
+
+    setMeme(meme => {
+      return {
+        ...meme,
+        randomImage: newImage
+      }
+    });
   }
 
   return (
@@ -24,6 +40,9 @@ const Meme = () => {
           placeholder="and take my money"
         />
         <button onClick={getImage} type="submit">Get a new meme image 🖼️</button>
+      </div>
+      <div className="meme--img">
+        <img className='meme--image' src={meme.randomImage} alt="" />
       </div>
     </main>
   );

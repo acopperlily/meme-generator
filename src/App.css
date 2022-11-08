@@ -71,3 +71,12 @@ button {
   padding: 10px;
   cursor: pointer;
 }
+
+.meme--img {
+  width: 500px;
+  margin: 36px auto;
+}
+
+.meme--image {
+  width: 100%;
+}
